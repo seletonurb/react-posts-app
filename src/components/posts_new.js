@@ -20,12 +20,20 @@ class PostsNew extends Component {
     );
   }
 
+  onSubmit(values) {
+    // this === component
+    console.log(values);
+  }
+
   render() {
+    const { handleSubmit} = this.props;
+
     return (
-      <form>
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field name="title" label="Title" component={this.renderField} />
         <Field name="categories" label="Categories" component={this.renderField} />
-        <Field name="post_content" label="Post Content" component={this.renderField} />
+        <Field name="content" label="Post Content" component={this.renderField} />
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     );
   }
