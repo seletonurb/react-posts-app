@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
 class PostsNew extends Component {
-  renderTitleField(field) {
+  renderField(field) {
     return (
       <div className="form-group">
-        <label>Title</label>
+        <label>{field.label}</label>
         <input
           className="form-control"
           type="text"
@@ -18,29 +18,13 @@ class PostsNew extends Component {
       </div>
     );
   }
-  renderCategoriesField(field) {
-    return (
-      <div className="form-group">
-        <label>Categories</label>
-        <input className="form-control" type="text" {...field.input} />
-      </div>
-    );
-  }
-  renderPostContentField(field) {
-    return (
-      <div className="form-group">
-        <label>Post Content</label>
-        <input className="form-control" type="text" {...field.input} />
-      </div>
-    );
-  }
 
   render() {
     return (
       <form>
-        <Field name="title" component={this.renderTitleField} />
-        <Field name="categories" component={this.renderCategoriesField} />
-        <Field name="post_content" component={this.renderPostContentField} />
+        <Field name="title" label="Title" component={this.renderField} />
+        <Field name="categories" label="Categories" component={this.renderField} />
+        <Field name="post_content" label="Post Content" component={this.renderField} />
       </form>
     );
   }
