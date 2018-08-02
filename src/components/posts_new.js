@@ -15,6 +15,7 @@ class PostsNew extends Component {
           // onBlur={field.input.onBlur}
           {...field.input}
         />
+        {field.meta.error}
       </div>
     );
   }
@@ -30,6 +31,27 @@ class PostsNew extends Component {
   }
 }
 
+function validate(values) {
+  // console.log(values) -> {title: 'asdf', categories: 'blah', content: 'blah blah'}
+  const errors = {};
+
+  // Validate the inputs from 'values'
+  if (!values.title || values.title.length < 3) {
+    errors.title = "Enter a title that is at least 3 characters";
+  }
+  if (!values.categories) {
+    errors.categories = "Enter some categories!";
+  }
+  if (!values.content) {
+    errors.content = "Enter some content!";
+  }
+
+  // if errrors is empty, the form is fine to submit
+  // if errors has *any* properties, redux form assumes form is invalid
+  return errors;
+}
+
 export default reduxForm({
+  validate,
   form: "PostsNewForm"
 })(PostsNew);
