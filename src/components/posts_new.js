@@ -2,9 +2,13 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
 class PostsNew extends Component {
+
   renderField(field) {
+    const { meta } = field; // destructuring in es6 : const meta = field.meta;
+    const className=`form-group ${meta.touched && meta.error ? 'has-danger': ''}`;
+
     return (
-      <div className="form-group">
+      <div className={className}>
         <label>{field.label}</label>
         <input
           className="form-control"
@@ -15,8 +19,10 @@ class PostsNew extends Component {
           // onBlur={field.input.onBlur}
           {...field.input}
         />
-        {field.meta.touched ? field.meta.error :  ''}
-      </div>
+        <div className="text-help">
+          {meta.touched ? meta.error :  ''}
+        </div>
+        </div>
     );
   }
 
