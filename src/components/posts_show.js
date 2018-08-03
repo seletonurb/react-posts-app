@@ -6,9 +6,11 @@ import { fetchPost } from "../actions";
 
 class PostsShow extends Component {
   componentDidMount() {
-    // const id = this.props.match.params.id;
-    const { id } = this.props.match.params;
-    this.props.fetchPost(id);
+    if (!this.props.post) {
+      // const id = this.props.match.params.id;
+      const { id } = this.props.match.params;
+      this.props.fetchPost(id);
+    }
   }
   render() {
     const { post } = this.props;
